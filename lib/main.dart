@@ -128,10 +128,22 @@ class MapSampleState extends State<MapSample> with SingleTickerProviderStateMixi
     );
   }
 
+  Widget h(String txt) {
+    return Container(
+      padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
+      height: 50,
+      child: Text(
+        txt,
+        textAlign: TextAlign.start,
+        style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+      ),
+    );
+  }
+
   Widget f(String txt) {
     return Container(
-        padding: EdgeInsets.all(10),
-        height: 40,
+        //padding: EdgeInsets.all(10),
+        height: 30,
         child: Text(
           txt,
           textAlign: TextAlign.start,
@@ -151,6 +163,7 @@ class MapSampleState extends State<MapSample> with SingleTickerProviderStateMixi
             SingleChildScrollView(
               child: Column(
                 children: [
+                  h('Info from vehicle:'),
                   Column(
                     children: [
                       f('Turn signal used: Left'),
@@ -158,15 +171,21 @@ class MapSampleState extends State<MapSample> with SingleTickerProviderStateMixi
                       f('Seatbelt On'),
                     ]
                   ),
+                  h('How it happened:'),
                   map(),
-                  if (_controller.isCompleted) MaterialButton(
-                      child: Text('File Claim'),
-                      onPressed: () {
-                        setState(() {
-                          claimVisible = false;
-                        });
-                      },
-                    )
+                  MaterialButton(
+                    child: Text('Submit Claim'),
+                    color: Colors.blue,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: new BorderRadius.circular(18.0),
+                        //side: BorderSide(color: Colors.blue)
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        claimVisible = false;
+                      });
+                    },
+                  )
               ]
             ),
           ),
